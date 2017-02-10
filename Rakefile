@@ -1,6 +1,13 @@
-require "bundler/gem_tasks"
+require "bundler/setup"
+Bundler::GemHelper.install_tasks
+
 require "rspec/core/rake_task"
 
-RSpec::Core::RakeTask.new(:spec)
+# Adds dummy:db tasks.
+load "spec/dummy/Rakefile"
 
-task default: :spec
+# Declares gem's own tasks.
+desc "Runs test suite."
+task default: %w(dummy:db:migrate) do
+  system "bundle exec rspec spec"
+end

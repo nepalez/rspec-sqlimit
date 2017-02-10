@@ -1,0 +1,6 @@
+---
+test:
+  adapter:  :sqlite3
+  database: spec/dummy/db/test.sqlite3
+  pool:     5
+  timeout:  5000

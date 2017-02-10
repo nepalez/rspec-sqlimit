@@ -1,0 +1,14 @@
+require "active_record"
+require "bundler/setup"
+
+namespace :dummy do
+  task :environment do
+    require_relative "lib/dummy"
+  end
+
+  namespace :db do
+    task load_config: :environment
+  end
+
+  load "active_record/railties/databases.rake"
+end
