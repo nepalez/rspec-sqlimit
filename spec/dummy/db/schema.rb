@@ -10,17 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211104823) do
-
-  create_table "posts", force: :cascade do |t|
-    t.integer "users_id"
-    t.string  "title"
-    t.text    "text"
-  end
+ActiveRecord::Schema.define(version: 20170211104800) do
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.index ["name"], name: "index_users_on_name"
   end
 
 end

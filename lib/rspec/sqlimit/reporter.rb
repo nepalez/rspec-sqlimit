@@ -2,29 +2,33 @@ module RSpec::SQLimit
   class Reporter
     attr_reader :matcher
 
-    def initialize(counter, matcher = nil)
+    def initialize(counter)
       @counter = counter
-      @matcher = matcher
+      @count   = counter.count
+      @queries = counter.queries
+      @matcher = counter.matcher
     end
 
-    def count
-      return queries.count unless @matcher
-      queries.count { |query| query[:sql] =~ @matcher }
-    end
+    def call
+      suffix = " among others (see mark ->)" if @matcher
 
-    def lines
-      queries.map.with_index { |*args| line(*args) }
+      return "No queries were invoked" if @queries.empty?
+
+      <<-MESSAGE.gsub(/ +\|/, "")
+        |The following #{@count} queries were invoked#{suffix}:
+        |#{lines.join("\n")}
+      MESSAGE
     end
 
     private
 
-    def line(query, index)
-      prefix = @matcher && query =~ @matcher ? "->" : "  "
-      "#{prefix} #{index}) #{query[:sql]} (#{query[:duration].round(3)} ms)"
+    def lines
+      @queries.map.with_index { |*args| line(*args) }
     end
 
-    def queries
-      @queries ||= @counter.queries
+    def line(query, index)
+      prefix = (matcher && query[:sql] =~ matcher) ? "->" : "  "
+      "#{prefix} #{index + 1}) #{query[:sql]} (#{query[:duration].round(3)} ms)"
     end
   end
 end

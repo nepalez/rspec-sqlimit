@@ -1,3 +1,4 @@
+require "active_support/notifications"
 require "active_record"
 require "rspec"
 
@@ -7,45 +8,40 @@ module RSpec
     require_relative "sqlimit/reporter"
   end
 
-  Matchers.define :exceed_query_limit do |expected, matcher = nil|
-    def counter
-      @counter ||= RSpec::SQLimit::Counter.new
-    end
-
-    def message(expected, matcher, negation = false)
-      if matcher
-        condition   = negation ? "maximum" : "more than"
-        restriction = " that match #{matcher}"
-        suffix      = " among others (see mark ->)"
-      end
-
-      reporter = RSpec::SQLimit::Reporter.new(counter, matcher)
-
-      <<-MESSAGE.gsub(/ +\|/, "")
-        |Expected to run #{condition} #{expected} queries#{restriction}
-        |The following #{reporter.count} queries were invoked#{suffix}:
-        |#{reporter.lines.join("\n")}
-      MESSAGE
+  Matchers.define :exceed_query_limit do |expected|
+    chain :with do |matcher|
+      @matcher = matcher
     end
 
     match do |block|
-      counter.count(&block)
-      RSpec::SQLimit::Reporter.new(counter, matcher).count > expected
+      @counter ||= RSpec::SQLimit::Counter[@matcher, block]
+      @counter.count > expected
     end
 
     match_when_negated do |block|
-      counter.count(&block)
-      RSpec::SQLimit::Reporter.new(counter, matcher).count <= expected
+      @counter ||= RSpec::SQLimit::Counter[@matcher, block]
+      @counter.count <= expected
     end
 
     failure_message do |_|
-      message(expected, matcher)
+      message(expected, @counter)
     end
 
     failure_message_when_negated do |_|
-      message(expected, matcher, true)
+      message(expected, @counter, true)
     end
 
     supports_block_expectations
+
+    def message(expected, counter, negation = false)
+      reporter    = RSpec::SQLimit::Reporter.new(counter)
+      condition   = negation ? "maximum" : "more than"
+      restriction = " that match #{reporter.matcher}" if reporter.matcher
+
+      <<-MESSAGE.gsub(/ +\|/, "")
+        |Expected to run #{condition} #{expected} queries#{restriction}
+        |#{reporter.call}
+      MESSAGE
+    end
   end
 end
