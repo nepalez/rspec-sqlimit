@@ -4,6 +4,8 @@ AllCops:
   DisplayStyleGuide:  true
   StyleGuideCopsOnly: true
   TargetRubyVersion:  2.3
+  Exclude:
+    - spec/dummy/db/schema.rb
 
 Metrics/ParameterLists:
   Max: 5
