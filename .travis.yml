@@ -4,7 +4,6 @@ language: ruby
 cache:    bundler
 script:
   - bundle exec rspec
-  - bundle exec rubocop
 rvm:
   - 2.3.0
   - ruby-head
