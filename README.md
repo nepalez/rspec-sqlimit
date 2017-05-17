@@ -4,6 +4,8 @@ RSpec matcher to control number of SQL queries executed by a block of code.
 
 It wraps [the answer at Stack Overflow][stack-answer] by [Ryan Bigg][ryan-bigg], which based on Active Support [Notification][notification] and [Instrumentation][instrumentation] mechanisms.
 
+For motivation and details see my [blog post "Fighting the Hydra of N+1 queries" in the Martian Chronicles][hydra].
+
 [![Gem Version][gem-badger]][gem]
 [![Build Status][travis-badger]][travis]
 [![Dependency Status][gemnasium-badger]][gemnasium]
@@ -124,3 +126,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 [notification]: http://api.rubyonrails.org/classes/ActiveSupport/Notifications.html
 [instrumentation]: http://guides.rubyonrails.org/active_support_instrumentation.html
 [hook]: http://guides.rubyonrails.org/active_support_instrumentation.html#sql-active-record
+[hydra]: https://evilmartians.com/chronicles/fighting-the-hydra-of-n-plus-one-queries
