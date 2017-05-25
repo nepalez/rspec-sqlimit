@@ -28,7 +28,11 @@ module RSpec::SQLimit
 
     def line(query, index)
       prefix = (matcher && query[:sql] =~ matcher) ? "->" : "  "
-      "#{prefix} #{index + 1}) #{query[:sql]} (#{query[:duration].round(3)} ms)"
+      binds = query[:binds].empty? ? nil : " #{query[:binds]}"
+      <<-LINE.gsub(/ +\|/, "").delete("\n")
+        |#{prefix} #{index + 1}) #{query[:sql]};#{binds}\
+        | (#{query[:duration].round(3)} ms)
+      LINE
     end
   end
 end
