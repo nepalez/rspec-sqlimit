@@ -27,5 +27,9 @@ describe "exceed_query_limit" do
     it "works when actual number of queries exceeds the limit" do
       expect { User.create id: 3 }.to exceed_query_limit(0).with(/INSERT/)
     end
+
+    it 'works when nil is used' do
+      expect { User.create id: nil }.to exceed_query_limit(0).with(/INSERT/)
+    end
   end
 end

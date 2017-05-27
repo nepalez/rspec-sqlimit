@@ -31,8 +31,17 @@ module RSpec::SQLimit
     def callback
       @callback ||= lambda do |_name, start, finish, _message_id, values|
         return if %w(CACHE SCHEMA).include? values[:name]
-        queries << { sql: values[:sql], duration: (finish - start) * 1_000 }
+        queries << { sql: replace_args(values[:sql], values[:binds]),
+                     duration: (finish - start) * 1_000 }
       end
+    end
+
+    def replace_args(query, args)
+      result = query
+      args.each do |arg|
+        result = query.gsub("?", %("#{arg.value}"))
+      end
+      result
     end
   end
 end
