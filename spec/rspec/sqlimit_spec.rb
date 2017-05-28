@@ -68,9 +68,9 @@ describe "exceed_query_limit" do
         end
       end
 
-      describe '.destroy' do
+      describe '.delete' do
         it 'works when actual number of queries is below the limit' do
-          expect { user.destroy }.not_to exceed_query_limit(0).with(/UPDATE/)
+          expect { user.destroy }.not_to exceed_query_limit(0).with(/DELETE/)
         end
       end
     end
