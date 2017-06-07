@@ -31,7 +31,11 @@ module RSpec::SQLimit
     def callback
       @callback ||= lambda do |_name, start, finish, _message_id, values|
         return if %w(CACHE SCHEMA).include? values[:name]
-        queries << { sql: values[:sql], duration: (finish - start) * 1_000 }
+        queries << {
+          sql: values[:sql],
+          duration: (finish - start) * 1_000,
+          binds: values[:type_casted_binds]
+        }
       end
     end
   end
