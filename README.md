@@ -68,7 +68,7 @@ require "rspec-sqlimit"
 
 RSpec.describe "N+1 safety" do
   it "doesn't send unnecessary requests to db" do
-    expect { User.create }.not_to exceed_query_limit(1).with(/^INSERT/)
+    expect { User.create name: "Joe" }.not_to exceed_query_limit(1).with(/^INSERT/)
   end
 end
 ```
@@ -79,35 +79,11 @@ Failure/Error: expect { User.create }.not_to exceed_query_limit(0).with(/INSERT/
   Expected to run maximum 0 queries that match (?-mix:INSERT)
   The following 1 queries were invoked among others (see mark ->):
      1) begin transaction (0.072 ms)
-  -> 2) INSERT INTO "users" DEFAULT VALUES (0.368 ms)
+  -> 2) INSERT INTO "users" ("name") VALUES (?); ["Joe"] (0.368 ms)
      3) commit transaction (147.559 ms)
 ```
 
-## Further Development
-
-For now the gem uses unbinded Active Record queries in error descriptions. For example, when your query contains arguments, the error message will look like
-
-```ruby
-require "rspec-sqlimit"
-
-RSpec.describe "N+1 safety" do
-  it "doesn't send unnecessary requests to db" do
-    expect { User.create(name: "Joe") }.not_to exceed_query_limit(1)
-  end
-end
-```
-
-```
-Failure/Error: expect { User.create }.not_to exceed_query_limit(0).with(/INSERT/)
-
-  Expected to run maximum 0 queries that match (?-mix:INSERT)
-  The following 1 queries were invoked among others (see mark ->):
-     1) begin transaction (0.072 ms)
-  -> 2) INSERT INTO "users" ("name") VALUES (?) (0.368 ms)
-     3) commit transaction (147.559 ms)
-```
-
-This is because [Active Record instrumentation hook][hook] keeps a query and bindings separately (under `:sql` and `:binds` keys). So the challenge is **to bind arguments to the query** in the report to make a debugging a bit simpler.
+In the last example you can see that binded values are shown after the query following the Rails convention.
 
 ## License
 
