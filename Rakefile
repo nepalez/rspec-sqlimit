@@ -8,6 +8,6 @@ load "spec/dummy/Rakefile"
 
 # Declares gem's own tasks.
 desc "Runs test suite."
-task default: %w(dummy:db:migrate) do
+task default: %w(dummy:db:create dummy:db:migrate) do
   system "bundle exec rspec spec"
 end

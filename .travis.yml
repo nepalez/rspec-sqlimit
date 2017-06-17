@@ -3,7 +3,7 @@ sudo:     false
 language: ruby
 cache:    bundler
 script:
-  - bundle exec rspec
+  - bundle exec rake
 rvm:
   - 2.3.0
   - ruby-head
