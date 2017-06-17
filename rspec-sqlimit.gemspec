@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name        = "rspec-sqlimit"
-  gem.version     = "0.0.1"
+  gem.version     = "0.0.2"
   gem.author      = "Andrew Kozin (nepalez)"
   gem.email       = "andrew.kozin@gmail.com"
   gem.homepage    = "https://github.com/nepalez/rspec-sqlimit"
