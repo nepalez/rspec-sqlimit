@@ -8,7 +8,7 @@ load "spec/dummy/Rakefile"
 
 # Declares gem's own tasks.
 desc "Runs test suite over all rails versions."
-task :default do
+task default: %w(dummy:db:create dummy:db:migrate) do
   if ENV['BUNDLE_GEMFILE'] =~ /gemfiles/
     Rake::Task[:spec].invoke
   else
