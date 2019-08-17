@@ -36,7 +36,9 @@ describe RSpec::SQLimit::Reporter do
 
       it 'prints all params' do
         # SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2, 3) (0.17 ms))
-        expect(subject.call).to include("IN (1, 2, 3)")
+        # Rails >= 6:
+        # SELECT "users".* FROM "users" WHERE "users"."id" IN (?, ?, ?); [1, 2, 3]  (0.121 ms)
+        expect(subject.call).to include("1, 2, 3")
       end
     end
   end
