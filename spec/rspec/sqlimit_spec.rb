@@ -33,7 +33,9 @@ describe "exceed_query_limit" do
     end
 
     it "works when array is used as a restriction" do
-      expect { (User.where id: [1, 2, 3]).to_a }.to exceed_query_limit(0).with(/SELECT/)
+      expect { (User.where id: [1, 2, 3]).to_a }
+        .to exceed_query_limit(0)
+        .with(/SELECT/)
     end
 
     it "works when actual number of queries is below the limit" do

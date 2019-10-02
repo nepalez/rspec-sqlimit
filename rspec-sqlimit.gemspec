@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name        = "rspec-sqlimit"
-  gem.version     = "0.0.2"
+  gem.version     = "0.0.3"
   gem.author      = "Andrew Kozin (nepalez)"
   gem.email       = "andrew.kozin@gmail.com"
   gem.homepage    = "https://github.com/nepalez/rspec-sqlimit"
@@ -21,5 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rake", "> 10.0"
   gem.add_development_dependency "sqlite3", "~> 1.3"
   gem.add_development_dependency "database_cleaner", "~> 1.5"
-  gem.add_development_dependency "rubocop", "~> 0.44"
+  gem.add_development_dependency "rubocop", "~> 0.49"
 end

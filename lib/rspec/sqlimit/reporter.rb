@@ -28,8 +28,9 @@ module RSpec::SQLimit
 
     def line(query, index)
       prefix = (matcher && query[:sql] =~ matcher) ? "->" : "  "
-      binds = query[:binds].any? ? "; #{query[:binds]} " : ''
-      "#{prefix} #{index + 1}) #{query[:sql]}#{binds} (#{query[:duration].round(3)} ms)"
+      binds = query[:binds].any? ? "; #{query[:binds]} " : ""
+      "#{prefix} #{index + 1}) #{query[:sql]}#{binds}" \
+      " (#{query[:duration].round(3)} ms)"
     end
   end
 end

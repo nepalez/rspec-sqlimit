@@ -3,10 +3,11 @@ AllCops:
   DisplayCopNames:    true
   DisplayStyleGuide:  true
   StyleGuideCopsOnly: true
-  TargetRubyVersion:  2.3
+  TargetRubyVersion:  2.6
   Exclude:
     - spec/dummy/db/schema.rb
-
+    - vendor/bundle/**/*
+    - gemfiles/vendor/**/*
 Metrics/ParameterLists:
   Max: 5
 
@@ -14,7 +15,7 @@ Style/Alias:
   Enabled: false
 
 Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
+  Enabled: false
 
 Style/FileName:
   Enabled: false

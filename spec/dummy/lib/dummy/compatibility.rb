@@ -3,7 +3,7 @@
 unless ActiveRecord::Migration.respond_to?(:[])
   class ActiveRecord::Migration
     class << self
-      def [](version)
+      def [](_version)
         self
       end
     end
