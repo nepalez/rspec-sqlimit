@@ -31,6 +31,7 @@ module RSpec::SQLimit
     def callback
       @callback ||= lambda do |_name, start, finish, _message_id, values|
         return if %w(CACHE SCHEMA).include? values[:name]
+        return if cached_query?(values)
         queries << {
           sql: values[:sql],
           duration: (finish - start) * 1_000,
@@ -41,6 +42,10 @@ module RSpec::SQLimit
 
     def type_cast(binds)
       binds.map { |column, value| ActiveRecord::Base.connection.type_cast(value, column) }
+    end
+
+    def cached_query?(values)
+      values[:type_casted_binds].respond_to?(:call)
     end
   end
 end
