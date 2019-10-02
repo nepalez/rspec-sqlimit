@@ -42,4 +42,21 @@ describe RSpec::SQLimit::Reporter do
       end
     end
   end
+
+  context 'activerecord query caching was enabled' do
+    let(:counter) { RSpec::SQLimit::Counter[nil, Proc.new{ queries }] }
+
+    let(:queries) do
+      User.cache do
+        User.where(id: 1).to_a
+        User.where(id: 1).to_a
+        User.where(id: [2, 3]).to_a
+        User.where(id: [2, 3]).to_a
+      end
+    end
+
+    it 'ignores cached queries' do
+      expect(subject.call).to include("2 queries were invoked")
+    end
+  end
 end
