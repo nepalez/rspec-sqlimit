@@ -11,7 +11,6 @@ module RSpec::SQLimit
 
     def call
       suffix = " among others (see mark ->)" if @matcher
-
       return "No queries were invoked" if @queries.empty?
 
       <<-MESSAGE.gsub(/ +\|/, "")
@@ -28,7 +27,7 @@ module RSpec::SQLimit
 
     def line(query, index)
       prefix = (matcher && query[:sql] =~ matcher) ? "->" : "  "
-      binds = query[:binds].any? ? "; #{query[:binds]} " : ""
+      binds = query[:binds]&.any? ? "; #{query[:binds]} " : ""
       "#{prefix} #{index + 1}) #{query[:sql]}#{binds}" \
       " (#{query[:duration].round(3)} ms)"
     end
