@@ -68,7 +68,7 @@ require "rspec-sqlimit"
 
 RSpec.describe "N+1 safety" do
   it "doesn't send unnecessary requests to db" do
-    expect { User.create name: "Joe" }.not_to exceed_query_limit(1).with(/^INSERT/)
+    expect { User.create name: "Joe" }.not_to exceed_query_limit(0).with(/^INSERT/)
   end
 end
 ```
