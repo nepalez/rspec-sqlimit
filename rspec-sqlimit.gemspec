@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = ">= 2.3"
 
-  gem.add_runtime_dependency "activerecord", "> 4.2", "< 7.0"
+  gem.add_runtime_dependency "activerecord", "> 4.2", "< 7.1"
   gem.add_runtime_dependency "rspec", "~> 3.0"
 
   gem.add_development_dependency "appraisal", "~> 2.2"
