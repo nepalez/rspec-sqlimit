@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.0.5] - [2022-02-13]
+- Support of Rails 7 (@kivanio)
+- Fix README (@rcclemente)
+
 ## [0.0.4] - [2021-03-21]
 
 ### Fixed
@@ -29,3 +33,4 @@ This is a first public release (@nepalez)
 [0.0.2]: https://github.com/nepalez/rspec-sqlimit/compare/v0.0.1...v0.0.2
 [0.0.3]: https://github.com/nepalez/rspec-sqlimit/compare/v0.0.2...v0.0.3
 [0.0.4]: https://github.com/nepalez/rspec-sqlimit/compare/v0.0.3...v0.0.4
+[0.0.5]: https://github.com/nepalez/rspec-sqlimit/compare/v0.0.4...v0.0.5
