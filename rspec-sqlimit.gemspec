@@ -13,13 +13,6 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = ">= 2.3"
 
-  gem.add_runtime_dependency "activerecord", "> 4.2", "< 7.2"
+  gem.add_runtime_dependency "activerecord", ">= 4.2.0", "< 8"
   gem.add_runtime_dependency "rspec", "~> 3.0"
-
-  gem.add_development_dependency "appraisal", "~> 2.2"
-  gem.add_development_dependency "rspec", "~> 3.0"
-  gem.add_development_dependency "rake", "> 10.0"
-  gem.add_development_dependency "sqlite3", "~> 1.3"
-  gem.add_development_dependency "database_cleaner", "~> 1.5"
-  gem.add_development_dependency "rubocop", "~> 0.49"
 end

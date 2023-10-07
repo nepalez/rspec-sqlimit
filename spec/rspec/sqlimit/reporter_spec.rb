@@ -31,7 +31,8 @@ describe RSpec::SQLimit::Reporter do
 
       it "prints param as an array with one element" do
         # INSERT INTO "users" ("id") VALUES (?); [1]  (0.234 ms)
-        expect(subject.call).to include("VALUES (?); [1]")
+        # INSERT INTO "users" ("id") VALUES (?) RETURNING "id"; [1]  (1.12 ms)
+        expect(subject.call).to match(/VALUES \(\?\).*; \[1\]/)
       end
     end
 
@@ -43,11 +44,10 @@ describe RSpec::SQLimit::Reporter do
       end
 
       it "prints all params" do
-        # rubocop: disable Metrics/LineLength
         # SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2, 3) (0.17 ms))
         # Rails >= 6:
         # SELECT "users".* FROM "users" WHERE "users"."id" IN (?, ?, ?); [1, 2, 3]  (0.121 ms)
-        # rubocop: enable Metrics/LineLength
+        # rubocop: enable Layout/LineLength
         expect(subject.call).to include("1, 2, 3")
       end
     end
