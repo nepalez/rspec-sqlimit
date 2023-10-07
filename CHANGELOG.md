@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.0.6] - [2023-10-06]
-- Support of Rails 7.2+ (@terracatta)
+- Support of Rails 7+ (@terracatta)
 
 ## [0.0.5] - [2022-02-13]
 - Support of Rails 7 (@kivanio)

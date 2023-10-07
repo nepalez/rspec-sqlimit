@@ -2,7 +2,7 @@ require "pry"
 require "rspec-sqlimit"
 require "database_cleaner"
 
-require_relative "dummy/lib/dummy"
+require_relative "dummy/config/environment"
 
 DatabaseCleaner.strategy = :truncation
 
