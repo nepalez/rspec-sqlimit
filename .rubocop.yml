@@ -1,15 +1,20 @@
 ---
 AllCops:
-  DisplayCopNames:    true
-  DisplayStyleGuide:  true
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  NewCops: enable
   StyleGuideCopsOnly: true
-  TargetRubyVersion:  2.6
+  TargetRubyVersion: 2.3
   Exclude:
     - spec/dummy/db/schema.rb
     - vendor/bundle/**/*
     - gemfiles/vendor/**/*
+
 Metrics/ParameterLists:
   Max: 5
+
+Naming/FileName:
+  Enabled: false
 
 Style/Alias:
   Enabled: false
@@ -17,13 +22,13 @@ Style/Alias:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Style/FileName:
-  Enabled: false
-
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/ModuleFunction:
+  Enabled: false
+
+Style/OptionalBooleanParameter:
   Enabled: false
 
 Style/StringLiterals:

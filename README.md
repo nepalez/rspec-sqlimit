@@ -7,9 +7,6 @@ It wraps [the answer at Stack Overflow][stack-answer] by [Ryan Bigg][ryan-bigg],
 For motivation and details see my [blog post "Fighting the Hydra of N+1 queries" in the Martian Chronicles][hydra].
 
 [![Gem Version][gem-badger]][gem]
-[![Build Status][travis-badger]][travis]
-[![Dependency Status][gemnasium-badger]][gemnasium]
-[![Code Climate][codeclimate-badger]][codeclimate]
 
 <a href="https://evilmartians.com/">
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54"></a>
@@ -89,14 +86,8 @@ In the last example you can see that binded values are shown after the query fol
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
-[codeclimate-badger]: https://img.shields.io/codeclimate/github/nepalez/rspec-sqlimit.svg?style=flat
-[codeclimate]: https://codeclimate.com/github/nepalez/rspec-sqlimit
 [gem-badger]: https://img.shields.io/gem/v/rspec-sqlimit.svg?style=flat
 [gem]: https://rubygems.org/gems/rspec-sqlimit
-[gemnasium-badger]: https://img.shields.io/gemnasium/nepalez/rspec-sqlimit.svg?style=flat
-[gemnasium]: https://gemnasium.com/nepalez/rspec-sqlimit
-[travis-badger]: https://img.shields.io/travis/nepalez/rspec-sqlimit/master.svg?style=flat
-[travis]: https://travis-ci.org/nepalez/rspec-sqlimit
 [stack-answer]: http://stackoverflow.com/a/5492207/1869912
 [ryan-bigg]: http://ryanbigg.com/
 [notification]: http://api.rubyonrails.org/classes/ActiveSupport/Notifications.html

@@ -8,7 +8,10 @@
 /pkg/
 /spec/reports/
 /tmp/
-/spec/dummy/db/*.sqlite3
+/log/
+/spec/dummy/log/
+/spec/dummy/tmp/
+/spec/dummy/storage/
 *.gem
 .rspec_status
 .idea/

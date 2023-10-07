@@ -1,0 +1,15 @@
+name: Release a new version
+on:
+  release:
+    types: [created]
+jobs:
+  release:
+    name: Publish new version on RubyGems
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cadwallion/publish-rubygems-action@master
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          RUBYGEMS_API_KEY: ${{secrets.PUSH_RSPEC_SQLIMIT}}
+          RELEASE_COMMAND: rake release
