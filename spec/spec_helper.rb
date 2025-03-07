@@ -1,4 +1,4 @@
-require "pry"
+require "debug" unless ENV["CI"] == "true"
 require "rspec-sqlimit"
 require "database_cleaner"
 

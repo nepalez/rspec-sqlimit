@@ -7,8 +7,7 @@ group :test do
 end
 
 group :test, :development do
-  gem "pry"
-  gem "pry-byebug"
+  gem "debug" unless ENV["CI"] == "true"
   gem "rails"
   gem "rake", ">= 10"
   gem "rubocop"

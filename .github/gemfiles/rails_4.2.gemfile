@@ -7,8 +7,6 @@ group :test do
 end
 
 group :test, :development do
-  gem "pry"
-  gem "pry-byebug", "3.7.0"
   gem "rails", "4.2.0"
   gem "rake", ">= 10"
   gem "rubocop", "0.81.0"

@@ -7,8 +7,8 @@ group :test do
 end
 
 group :test, :development do
-  gem "rails", "~> 7.1.0"
+  gem "rails", "~> 8.0.0"
   gem "rake", ">= 10"
   gem "rubocop"
-  gem "sqlite3", "~> 1.6"
+  gem "sqlite3", "~> 2.0"
 end
